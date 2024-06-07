@@ -14,7 +14,7 @@ const TaskForm = ({ refreshTasks }) => {
         event.preventDefault();
 
         try {
-            await axios.post('http://localhost:3001/api/v1/tasks', { title, description, status });
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/tasks`, { title, description, status });
             refreshTasks();
             navigate('/');
         } catch (error) {

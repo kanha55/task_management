@@ -10,7 +10,7 @@ const App = () => {
   const [filter, setFilter] = useState('all');
 
   const refreshTasks = async () => {
-    const { data } = await axios.get('http://localhost:3001/api/v1/tasks');
+    const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/tasks`);
     setTasks(data);
   };
 

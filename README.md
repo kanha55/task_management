@@ -1,24 +1,80 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Task Management System
 
-Things you may want to cover:
+This project is a task management system built with Rails 7 and React.
 
-* Ruby version
+## Getting Started
 
-* System dependencies
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-* Configuration
+### Prerequisites
 
-* Database creation
+- Ruby 3.0.0
+- Rails 7.0.0
+- Node.js
+- Yarn
 
-* Database initialization
+### Backend Setup
 
-* How to run the test suite
+1. Clone the repository
 
-* Services (job queues, cache servers, search engines, etc.)
+git clone https://github.com/kanha55/task_management.git
 
-* Deployment instructions
+2. Navigate into the directory
+cd task_management
 
-* ...
+3. Install the dependencies
+
+bundle install
+
+4. Setup the database
+
+rails db:create db:migrate
+
+
+5. Start the server
+
+rails server -p 3001
+## Usage
+
+After starting the servers, navigate to `http://localhost:3001` in your browser to use the application.
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/yourusername/yourcontributingmdlink) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+
+
+
+### Frontend Setup
+
+1. Navigate into the frontend directory
+
+cd task_management_frontend
+
+
+
+2. Install the dependencies
+
+yarn install
+
+3. Start the server
+
+yarn start
+
+
+## Usage
+
+After starting the servers, navigate to `http://localhost:3001` in your browser to use the application.
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/yourusername/yourcontributingmdlink) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

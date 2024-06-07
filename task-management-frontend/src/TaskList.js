@@ -7,7 +7,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3001/api/v1/tasks/${id}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/v1/tasks/${id}`);
       refreshTasks();
     } catch (error) {
       console.error(error);
@@ -16,7 +16,7 @@ const TaskList = ({ tasks, refreshTasks }) => {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.put(`http://localhost:3001/api/v1/tasks/${id}`, { status });
+      await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/v1/tasks/${id}`, { status });
       refreshTasks();
     } catch (error) {
       console.error(error);
