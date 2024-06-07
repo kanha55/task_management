@@ -11,13 +11,12 @@ module Api
 
 			# POST /tasks
 			def create
-				byebug 
 				@task = Task.new(task_params)
 
 				if @task.save
 					render json: @task, status: :created, location: api_v1_task_url(@task)
 				else
-					render json: @task.errors, status: :unprocessable_entity
+					render json: @task.errors.full_messages.first, status: :unprocessable_entity
 				end
 			end
 

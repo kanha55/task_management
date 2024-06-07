@@ -1,38 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import axios from 'axios';
-import TaskForm from './TaskForm';
+import 'bootstrap/dist/css/bootstrap.css';
 import TaskList from './TaskList';
+import CreateTask from './CreateTask';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState('all');
 
   const refreshTasks = async () => {
-    try {
-      const response = await axios.get('http://localhost:3001/api/v1/tasks');
-      setTasks(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+    const { data } = await axios.get('http://localhost:3001/api/v1/tasks');
+    setTasks(data);
   };
 
   useEffect(() => {
     refreshTasks();
   }, []);
 
-  const filteredTasks = tasks.filter((task) => filter === 'all' || task.status === filter);
-
   return (
-    <div>
-      <TaskForm refreshTasks={refreshTasks} />
-      <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-        <option value="all">All</option>
-        <option value="todo">To Do</option>
-        <option value="in_progress">In Progress</option>
-        <option value="done">Done</option>
-      </select>
-      <TaskList tasks={filteredTasks} refreshTasks={refreshTasks} />
-    </div>
+    <Router>
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<TaskList tasks={tasks} refreshTasks={refreshTasks} filter={filter} />} />
+          <Route path="/create" element={<CreateTask refreshTasks={refreshTasks} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
