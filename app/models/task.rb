@@ -9,8 +9,11 @@ class Task < ApplicationRecord
   private
 
   def todo_tasks_must_be_less_than_half
-    if (Task.where(status: :todo).count + 1) > (Task.count * 0.5)
-      errors.add(:status, "can't be 'To Do' as more than 50% of tasks would be 'To Do'")
+    todo_count = Task.where(status: 0).count
+    total_count = Task.count
+    if total_count > 0 && (todo_count + 1) > (total_count * 0.5)
+      errors.add(:base, 'Cannot create new "To Do" task if "To Do" tasks are >= 50% of total tasks')
+      throw :abort
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TasksController, type: :controller do
+RSpec.describe Api::V1::TasksController, type: :controller do
   let(:valid_attributes) {
     { title: 'Test Task', description: 'This is a test task', status: 'todo' }
   }
@@ -39,8 +39,7 @@ RSpec.describe TasksController, type: :controller do
         post :create, params: { task: valid_attributes }, format: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json; charset=utf-8')
-        expect(response.location).to eq(task_url(Task.last))
-      end
+        expect(response.location).to eq(api_v1_task_url(Task.last))      end
     end
 
     context "with invalid params" do
